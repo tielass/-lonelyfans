@@ -4,8 +4,7 @@ class BookingsController < ApplicationController
   end
 
   def show
-    @fan = Fan.find(params[:fan_id])
-    @booking = Booking.find(params[:id])
+
   end
 
   def new
@@ -21,6 +20,7 @@ class BookingsController < ApplicationController
     redirect_to booking_path(@fan)
     else
       render :new, status: unprocessable_entity
+    end
   end
 
   def destroy
