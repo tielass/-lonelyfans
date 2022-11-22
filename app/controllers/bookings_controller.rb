@@ -18,9 +18,10 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.fan = @fan
     if @booking.save
-    redirect_to booking_path(@fan)
+      redirect_to booking_path(@fan)
     else
       render :new, status: unprocessable_entity
+    end
   end
 
   def destroy
