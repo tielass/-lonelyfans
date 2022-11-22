@@ -4,8 +4,7 @@ class BookingsController < ApplicationController
   end
 
   def show
-    @fan = Fan.find(params[:fan_id])
-    @booking = Booking.find(params[:id])
+
   end
 
   def new
