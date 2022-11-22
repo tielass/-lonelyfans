@@ -3,5 +3,15 @@ class PagesController < ApplicationController
   end
 
   def profile
+    @fan = Fan.new(fan_params)
+    # user_id = current_user[:id]
+    @fan.user = current_user
+    @bookings = Booking.all
+  end
+
+  private
+
+  def fan_params
+    params.permit(:nationality, :name, :description, :availability, :category, :price, :user_id, :image_url)
   end
 end

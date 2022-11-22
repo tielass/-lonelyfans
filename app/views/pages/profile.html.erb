@@ -1,1 +1,31 @@
+<h2 class="ml-5 mt-2">User Profil</h2>
+<div class="fan-formandbooking-index d-flex mb-5">
+  <div class="fan-form container w-25">
+  <h4>List yourself as a fan</h4>
+    <%= simple_form_for(@fan) do |f| %>
+      <%= f.input :nationality %>
+      <%= f.input :name %>
+      <%= f.input :image_url, as: :file, label: "Add your fan Image"%>
+      <%= f.input :description %>
+      <%= f.input :category %>
+      <%= f.input :price %>
+      <%= f.submit %>
+    <% end %>
+  </div>
 
+  <div class="booking-index w-50">
+    <div class="user-info">
+      <h4><%= current_user.username %></h4>
+    </div>
+
+  <h4>Booking#index</h4>
+  <% @bookings.each do |booking| %>
+    <div class="bookin-card">
+      <%= booking.start_date %>
+      <%= booking.start_date %>
+      <%= booking.user_id %>
+      <%= booking.fan_id %>
+    </div>
+  <% end %>
+  </div>
+</div>
