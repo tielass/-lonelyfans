@@ -1,0 +1,19 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg);">
+  <div class="container">
+    <h1>LonelyFans <strong>helps you</strong> to <strong>find commited people</strong>!</h1>
+    <p>Change your life and find the right fans to clobber with other lonely fans.</p>
+    <a class="btn btn-primary" href="#">Find 'em now! </a>
+  </div>
+</div>
+<div class="cards">
+  <% @fans.each do |fan| %>
+    <div class="card" style="width: 18rem;">
+      <img src="https://res.cloudinary.com/ddlep0dr3/image/upload/v1669127561/fun_lads_bxvtab.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <%= link_to fan.name.capitalize, fans_path(fan), class:"Dark link lead" %>
+        <p class="card-text"><%= fan.description %></p>
+        <p class="card-text">$ <%= fan.price %> per hour</p>
+      </div>
+    </div>
+  <% end %>
+</div>
