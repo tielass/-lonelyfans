@@ -1,6 +1,5 @@
-<h2 class="ml-5 mt-2">User Profil</h2>
-
-<div class="fan-formandbooking-index d-flex mb-5">
+<h2 class="my-5">User Profil</h2>
+<div class="fan-formandbooking-index d-flex mb-5 mx-5">
   <div class="fan-form container w-25">
     <h4>List yourself as a fan</h4>
       <%= simple_form_for(@fan) do |f| %>
@@ -14,31 +13,68 @@
       <% end %>
   </div>
 
-  <%# <div class="booking-index w-50">
-    <div class="user-info">
-    </div> %>
-
-  <h4>Your bookings</h4>
     <% if @bookings.empty? %>
-      <h2><%= "You haven't made any bookings yet" %></h2>
-    <% else %>
-      <% @bookings.each do |booking| %>
-        <div class="bookin-card">
-          <img class="bookin-card-img" style="width:30%;" src="https://www.billboard.com/wp-content/uploads/2022/11/02-Oliver-Tree-billboard-Jimmy-Fontaine-1548.jpg?w=942&h=623&crop=1"/>
-            <div class="bookin-card-infos">
-              <h3><%= booking.fan.name %></h3>
-              <div>
-                <p>Starts on:<%= booking.start_date  %></p>
-                <p>Ends on:<%= booking.end_date %></p>
-              </div>
-              <div>
-                <p><%= booking.fan.nationality %></p>
-                <p>At: <%= booking.fan.address %></p>
-              </div>
-            </div>
-        </div>
-      <% end %>
+      <div>
+        <h2 class="mt-5 mr-5" id="nobookingsh2"><%= "You haven't made any bookings yet" %></h2><br>
+        <p class="plus mx-auto"><%= link_to "+", fans_path  %></p>
+      </div>
+      </div>
     <% end %>
+
+      <section id="wholeindexlist">
+        <h4 class="my-3">Your bookings</h4>
+          <% @bookings.each do |booking| %>
+              <section>
+            <% if booking.end_date > Date.today %>
+                <div class="bookin-card">
+                  <img class="bookin-card-img" style="width:30%;" src="https://www.billboard.com/wp-content/uploads/2022/11/02-Oliver-Tree-billboard-Jimmy-Fontaine-1548.jpg?w=942&h=623&crop=1"/>
+                    <div class="bookin-card-infos">
+                      <h3><%= booking.fan.name %></h3>
+                      <div class="d-flex ">
+                        <div class="infobox">
+                          <p>Starts on: <%= booking.start_date  %></p>
+                          <p>Ends on: <%= booking.end_date %></p>
+                        </div>
+                        <div class="infobox">
+                          <p style="padding-left: 15px;"><%= booking.fan.nationality %></p>
+                          <p>At: <%= booking.fan.address %></p>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+          <% elsif (booking.end_date > Date.today) == 0 %>
+            <h2>You have no bookings coming up</h2>
+          <% else %>
+          <p></p>
+        <% end %>
+
+        <% if booking.end_date < Date.today %>
+          <h5 class="mt-4">Previews bookings</h5>
+            <div class="bookin-card prev-bookin-card">
+              <img class="bookin-card-img" style="width:30%; filter: grayscale(60%);" src="https://media.cnn.com/api/v1/images/stellar/prod/160617095325-01-eurocup-irish-fans.jpg?q=x_5,y_317,h_2546,w_4524,c_crop/h_720,w_1280"/>
+                <div class="bookin-card-infos">
+                  <h3><%= booking.fan.name %></h3>
+                  <div class="d-flex ">
+                    <div class="infobox">
+                      <p>Starts on: <%= booking.start_date  %></p>
+                      <p>Ends on: <%= booking.end_date %></p>
+                    </div>
+                    <div class="infobox">
+                      <p style="padding-left: 15px;"><%= booking.fan.nationality %></p>
+                      <p>At: <%= booking.fan.address %></p>
+                    </div>
+                    <h6 class="review-tag"><%= link_to "Write review", to: "#" %></h6>
+                  </div>
+                </div>
+            </div>
+        <% elsif (booking.end_date < Date.today) == 0 %>
+          <h2>You have no old bookings</h2>
+        <% else %>
+          <p></p>
+        <% end %>
+      </section>
+      <% end %>
+      </section>
   </div>
 
 <style>
@@ -46,12 +82,18 @@
   overflow: hidden;
   height: 120px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
   display: flex;
   align-items: center;
   width: 600px;
-  background-color: aqua;
+  background-color: #edf6f6cf;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  position: relative;
 }
+  .prev-bookin-card {
+    background-color: #d8dbdbcf;
+  }
 .bookin-card-img {
   height: 100%;
   width: 120px;
@@ -70,6 +112,30 @@
   margin-top: 8px;
 }
 .bookin-card .bookin-card-infos {
-  padding: 16px;
+  padding: 26px;
+  width: 100%;
+}
+h2 {
+  margin-left: 160px;
+}
+#nobookingsh2{
+  margin: 0 100px;
+}
+.plus{
+  font-size: 160px;
+  width: fit-content;
+}
+.infobox{
+  margin-right: 5%;
+  width: 40%;
+}
+.review-tag {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+}
+.review-tag:hover {
+  color: black;
+  text-shadow: white 1px 1px 5px ;
 }
 </style>
