@@ -9,12 +9,11 @@
     </div>
   </div>
 
-  <div>
+  <div class="col-12 col-sm-6">
     <h2>Book this fan!</h2>
     <%= simple_form_for ([@fan, @booking]) do |f| %>
       <%= f.input :start_date %>
       <%= f.input :end_date %>
-      <div class="container d-flex justify-content-center">
       <%= f.button :submit, class:"btn btn-outline-dark m-3" %>
     <% end %>
   </div>
