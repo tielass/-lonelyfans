@@ -6,7 +6,8 @@ class PagesController < ApplicationController
     @fan = Fan.new(fan_params)
     # user_id = current_user[:id]
     @fan.user = current_user
-    @bookings = Booking.all
+    @bookings = Booking.where(user: current_user)
+    @today = Date.today
   end
 
   private
