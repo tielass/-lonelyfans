@@ -1,16 +1,16 @@
 <h2 class="ml-5 mt-2">User Profil</h2>
 <div class="fan-formandbooking-index d-flex mb-5">
   <div class="fan-form container w-25">
-  <h4>List yourself as a fan</h4>
-    <%= simple_form_for(@fan) do |f| %>
-      <%= f.input :nationality, collection: Fan::NATIONS, prompt: 'select nationality' %>
-      <%= f.input :name %>
-      <%= f.input :image_url, label: "Add your fan Image"%>
-      <%= f.input :description %>
-      <%= f.input :category, collection: Fan::CATEGORY %>
-      <%= f.input :price %>
-      <%= f.submit %>
-    <% end %>
+    <h4>List yourself as a fan</h4>
+      <%= simple_form_for(@fan) do |f| %>
+        <%= f.input :nationality, collection: Fan::NATIONS, prompt: 'select nationality' %>
+        <%= f.input :name %>
+        <%= f.input :image_url, label: "Add your fan Image"%>
+        <%= f.input :description %>
+        <%= f.input :category, collection: Fan::CATEGORY %>
+        <%= f.input :price %>
+        <%= f.submit %>
+      <% end %>
   </div>
 
   <div class="booking-index w-50">
@@ -18,29 +18,58 @@
       <h4><%= current_user.username %></h4>
     </div>
 
-    <%# <div class="cards">
-    <% @lists.each do |list| %>
-      <%# <% if list.photo.attached? %>
-        <%# <div class="card-category" %>
-      <%# style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('<%= cl_image_path list.photo.key, height: 300, crop: :fill %>')"> %>
-      <%# <% else %> %>
-        <%# <div class="card-category" %>
-      <%# style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('<%= cl_image_path "92n7t0nwjsbekuy4d65td53129r3", height: 300, crop: :fill %>')"> %>
-      <%# <% end %> %>
-          <%# <%= link_to list.name, list_path(list), class:"text-light" %> %>
-          <%# <%= link_to "Delete", list_path(list), %>
-          <%# data: { turbo_method: :delete, turbo_confirm: "U sure?!" }, class:"btn btn-outline-dark m-3" %> %>
-        <%# </div> %>
-    <%# <% end %> %> %> %>
-
   <h4>Booking#index</h4>
-  <% @bookings.each do |booking| %>
-    <div class="bookin-card">
-      <%= booking.start_date %>
-      <%= booking.start_date %>
-      <%= booking.user_id %>
-      <%= booking.fan_id %>
-    </div>
-  <% end %>
+    <% if @bookings.empty? %>
+      <p><%= "You haven't made any bookings yet" %></p>
+    <% else %>
+      <% @bookings.each do |booking| %>
+        <div class="bookin-card">
+          <img src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"/>
+            <div class="bookin-card-infos">
+              <h2><%= booking.fan.name %></h2>
+              <li><%= booking.start_date %></li>
+              <li><%= booking.start_date %></li>
+              <li><%= booking.user_id %></li>
+              <li><%= booking.fan_id %></li>
+            </div>
+        </div>
+      <% end %>
+      <% end %>
   </div>
 </div>
+
+<style>
+.bookin-card {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  width: 600px;
+}
+
+.bookin-card img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+
+.bookin-card h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.bookin-card p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.bookin-card .bookin-card-infos {
+  padding: 26px;
+}
+</style>
