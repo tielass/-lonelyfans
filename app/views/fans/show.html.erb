@@ -1,9 +1,11 @@
-<div class="d-flex align-items-center">
-  <div class="cards">
-    <div class="card" style="width: 30rem;">
+<div class="container d-flex justify-items-center p-4">
+  <div class="me-5 ms-3 card-img">
+    <div style="width: 30rem;">
       <img src="https://res.cloudinary.com/ddlep0dr3/image/upload/v1669127561/fun_lads_bxvtab.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-text"><%= @fan.description %></p>
+      <div>
+        <h5 class="card-text pb-2"><%= @fan.name.capitalize %></h5>
+        <span class="badge rounded-pill bg-success"><%= @fan.category %></span>
+        <p class="card-text pt-2"><%= @fan.description %></p>
         <p class="card-text">$ <%= @fan.price %> per hour</p>
       </div>
     </div>
