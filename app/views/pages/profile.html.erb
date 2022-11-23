@@ -1,4 +1,5 @@
 <h2 class="ml-5 mt-2">User Profil</h2>
+
 <div class="fan-formandbooking-index d-flex mb-5">
   <div class="fan-form container w-25">
     <h4>List yourself as a fan</h4>
@@ -7,36 +8,38 @@
         <%= f.input :name %>
         <%= f.input :image_url, label: "Add your fan Image"%>
         <%= f.input :description %>
-        <%= f.input :category, collection: Fan::CATEGORY %>
+        <%= f.input :category, collection: Fan::CATEGORY, prompt: 'select characteristics' %>
         <%= f.input :price %>
         <%= f.submit %>
       <% end %>
   </div>
 
-  <div class="booking-index w-50">
+  <%# <div class="booking-index w-50">
     <div class="user-info">
-      <h4><%= current_user.username %></h4>
-    </div>
+    </div> %>
 
-  <h4>Booking#index</h4>
+  <h4>Your bookings</h4>
     <% if @bookings.empty? %>
-      <p><%= "You haven't made any bookings yet" %></p>
+      <h2><%= "You haven't made any bookings yet" %></h2>
     <% else %>
       <% @bookings.each do |booking| %>
         <div class="bookin-card">
-          <img src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"/>
+          <img class="bookin-card-img" style="width:30%;" src="https://www.billboard.com/wp-content/uploads/2022/11/02-Oliver-Tree-billboard-Jimmy-Fontaine-1548.jpg?w=942&h=623&crop=1"/>
             <div class="bookin-card-infos">
-              <h2><%= booking.fan.name %></h2>
-              <li><%= booking.start_date %></li>
-              <li><%= booking.start_date %></li>
-              <li><%= booking.user_id %></li>
-              <li><%= booking.fan_id %></li>
+              <h3><%= booking.fan.name %></h3>
+              <div>
+                <p>Starts on:<%= booking.start_date  %></p>
+                <p>Ends on:<%= booking.end_date %></p>
+              </div>
+              <div>
+                <p><%= booking.fan.nationality %></p>
+                <p>At: <%= booking.fan.address %></p>
+              </div>
             </div>
         </div>
       <% end %>
-      <% end %>
+    <% end %>
   </div>
-</div>
 
 <style>
 .bookin-card {
@@ -47,20 +50,18 @@
   display: flex;
   align-items: center;
   width: 600px;
+  background-color: aqua;
 }
-
-.bookin-card img {
+.bookin-card-img {
   height: 100%;
   width: 120px;
   object-fit: cover;
 }
-
 .bookin-card h2 {
   font-size: 16px;
   font-weight: bold;
   margin: 0;
 }
-
 .bookin-card p {
   font-size: 12px;
   line-height: 1.4;
@@ -68,8 +69,7 @@
   margin-bottom: 0;
   margin-top: 8px;
 }
-
 .bookin-card .bookin-card-infos {
-  padding: 26px;
+  padding: 16px;
 }
 </style>
