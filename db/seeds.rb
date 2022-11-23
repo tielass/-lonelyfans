@@ -14,8 +14,8 @@ puts "inserting fans"
 12.times do
   new_user = User.create!(email: Faker::Internet.email, password: "password")
   new_fan = Fan.create!(name: Faker::Marketing.buzzwords, nationality: Faker::Nation.nationality, description: Faker::ChuckNorris.fact, category: Faker::Fantasy::Tolkien.poem, price:  rand(10..100), user: new_user )
-  
-  user.photo.attached?
+
+  #user.photo.attached?
   puts "#{new_fan.name} was sucessfully created!"
 end
 

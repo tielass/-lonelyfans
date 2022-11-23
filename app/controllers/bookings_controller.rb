@@ -4,7 +4,8 @@ class BookingsController < ApplicationController
   end
 
   def show
-
+    @fan = Fan.find(params[:fan_id])
+    @booking = Booking.find(params[:id])
   end
 
   def new
@@ -16,8 +17,9 @@ class BookingsController < ApplicationController
     @fan = Fan.find(params[:fan_id])
     @booking = Booking.new(booking_params)
     @booking.fan = @fan
+    @booking.user = current_user
     if @booking.save
-      redirect_to booking_path(@fan)
+      redirect_to fan_booking_path(@fan, @booking)
     else
       render :new, status: unprocessable_entity
     end

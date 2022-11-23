@@ -5,6 +5,7 @@ class FansController < ApplicationController
 
   def show
     @fan = Fan.find(params[:id])
+    @booking = Booking.new
   end
 
   def create
