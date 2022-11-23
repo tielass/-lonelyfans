@@ -1,10 +1,13 @@
 .btn-lonelyfans {
   background: #6D9886;
   padding: 10px 15px;
-  border-radius: 10px;
+  border-radius: 6px;
+  box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
 }
 
 .btn-lonelyfans:hover{
   border: 2px solid #6D9886;
-  background:rgba(255,255,255, 0.8);
+  background:rgba(255,255,255, 0.6);
+  color: black;
+  box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
 }
