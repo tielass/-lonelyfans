@@ -11,7 +11,8 @@
       <img src="https://res.cloudinary.com/ddlep0dr3/image/upload/v1669127561/fun_lads_bxvtab.jpg" class="card-img-top" alt="...">
       
       <div class="card-body">
-        <%= link_to fan.name.capitalize, fans_path(fan), class:"Dark link lead" %>
+
+        <%= link_to fan.name.capitalize, fan_path(fan), class:"Dark link lead" %> 
         <p class="card-text"><%= fan.description.first(35) %></p>
         <span class="badge rounded-pill bg-success"><%= fan.category.first(25) %></span>
         <p class="card-text">$ <%= fan.price %> per hour</p>
