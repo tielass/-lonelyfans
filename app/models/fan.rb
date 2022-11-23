@@ -4,7 +4,8 @@ class Fan < ApplicationRecord
   validates :nationality, inclusion: { in: NATIONS }
   validates :category, inclusion: { in: CATEGORY }
   belongs_to :user
-  validates :image_url, :name, :price, presence: true
+  validates :name, :price, presence: true
   validates :description, length: { in: 8..300 }
   validates :name, uniqueness: true
+  has_one_attached :photo
 end
