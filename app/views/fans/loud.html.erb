@@ -20,15 +20,9 @@
   </div>
 </div>
 <%# Filters %>
- <%# <%= render "filters" %>
-<%# Search bars %>
-<div class="container w-50 py-5">
-  <%= form_with url: fans_path, method: :get, class:"d-flex" do %>
-    <%= text_field_tag :user, params[:user], class: "form-control me-3 filters-form", placeholder: "Find the best fan" %>
-    <%= text_field_tag :query, params[:query], class: "form-control filters-form border-end-0", placeholder: "Something" %>
-    <%= submit_tag "Search", class:"filters-search" %>
-  <% end %>
-</div>
+
+ <%= render "filters" %>
+ 
 <%# Content %>
 <div class="content">
   <div class="cards">
@@ -37,6 +31,7 @@
         <%# <img src="https://res.cloudinary.com/ddlep0dr3/image/upload/v1669127561/fun_lads_bxvtab.jpg" class="card-img-top" alt="..."> %>
         <%= cl_image_tag fan.photo.key, class:"card-img-top", crop: :fill %>
         <div class="card-body">
+
           <%= link_to fan.name.capitalize, fan_path(fan), class:"Dark link lead" %>
           <p class="card-text"><%= fan.description.first(35) %></p>
           <span class="badge rounded-pill bg-success"><%= fan.category.first(25) %></span>
@@ -44,6 +39,8 @@
         </div>
       </div>
     <% end %>
+
+
   </div>
   <div id="map" style="width: 100%; height: 600px;"
     data-controller="map"

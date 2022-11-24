@@ -20,8 +20,75 @@ class FansController < ApplicationController
           image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/931/931949.png")
         }
       end
+      # if params[:user].present? || params[:query].present? || params[:size].present?
+      #   @offers = policy_scope(Offer).global_search(params[:user]) if params[:user].present?
+
+      #   if @offers.nil?
+      #     @offers = policy_scope(Offer).global_search(params[:query]) if params[:query].present?
+      #   elsif params[:query].present?
+      #     @offers = @offers.global_search(params[:query])
+      #   end
+
+      #   if @offers.nil?
+      #     @offers = policy_scope(Offer).global_search(params[:size]) if params[:size].present?
+      #   else
+      #     @offers = @offers.global_search(params[:size]) if params[:size].present?
+      #   end
+      # else
+      #   @offers = policy_scope(Offer)
+      # end
     end
   end
+
+  # def index
+  #   if params[:user].present? || params[:query].present? || params[:size].present?
+  #     @offers = policy_scope(Offer).global_search(params[:user]) if params[:user].present?
+
+  #     if @offers.nil?
+  #       @offers = policy_scope(Offer).global_search(params[:query]) if params[:query].present?
+  #     elsif params[:query].present?
+  #       @offers = @offers.global_search(params[:query])
+  #     end
+
+  #     if @offers.nil?
+  #       @offers = policy_scope(Offer).global_search(params[:size]) if params[:size].present?
+  #     else
+  #       @offers = @offers.global_search(params[:size]) if params[:size].present?
+  #     end
+  #   else
+  #     @offers = policy_scope(Offer)
+  #   end
+  # end
+
+  def loud
+    @fans = Fan.where(category: "loud")
+  end
+
+  def violent
+    @fans = Fan.where(category: "violent")
+  end
+
+  def supportive
+    @fans = Fan.where(category: "supportive")
+  end
+
+  def serious
+    @fans = Fan.where(category: "serious")
+  end
+
+  def settled
+    @fans = Fan.where(category: "settled")
+  end
+
+  def good_behaviour
+    @fans = Fan.where(category: "good behaviour")
+  end
+
+  def drunk
+    @fans = Fan.where(category: "drunk")
+  end
+
+  # CRUD
 
   def show
     @fan = Fan.find(params[:id])
