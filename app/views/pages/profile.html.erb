@@ -3,11 +3,14 @@
   <div class="fan-form container w-25">
     <h4>List yourself as a fan</h4>
       <%= simple_form_for(@fan) do |f| %>
-        <%= f.input :nationality, collection: Fan::NATIONS, prompt: 'select nationality' %>
-        <%= f.input :name %>
-        <%= f.input :image_url, label: "Add your fan Image"%>
+        <div class="d-flex">
+          <%= f.input :name %>
+          <%= f.input :nationality, collection: Fan::NATIONS, prompt: 'Select Nationality' %>
+        </div>
+        <%= f.input :photo, as: :file, label: "Add your fan Image"%>
         <%= f.input :description %>
-        <%= f.input :category, collection: Fan::CATEGORY, prompt: 'select characteristics' %>
+        <%= f.input :category, collection: Fan::CATEGORY, prompt: 'Select Characteristics' %>
+        <%= f.input :address %>
         <%= f.input :price %>
         <%= f.submit %>
       <% end %>
@@ -22,10 +25,10 @@
     <% end %>
 
       <section id="wholeindexlist">
-        <h4 class="my-3">Your bookings</h4>
           <% @bookings.each do |booking| %>
               <section>
             <% if booking.end_date > Date.today %>
+        <h4 class="my-3">Your bookings</h4>
                 <div class="bookin-card">
                   <img class="bookin-card-img" style="width:30%;" src="https://www.billboard.com/wp-content/uploads/2022/11/02-Oliver-Tree-billboard-Jimmy-Fontaine-1548.jpg?w=942&h=623&crop=1"/>
                     <div class="bookin-card-infos">
@@ -51,7 +54,7 @@
         <% if booking.end_date < Date.today %>
           <h5 class="mt-4">Previews bookings</h5>
             <div class="bookin-card prev-bookin-card">
-              <img class="bookin-card-img" style="width:30%; filter: grayscale(60%);" src="https://media.cnn.com/api/v1/images/stellar/prod/160617095325-01-eurocup-irish-fans.jpg?q=x_5,y_317,h_2546,w_4524,c_crop/h_720,w_1280"/>
+              <img class="prev-bookin-card-img"src="https://media.cnn.com/api/v1/images/stellar/prod/160617095325-01-eurocup-irish-fans.jpg?q=x_5,y_317,h_2546,w_4524,c_crop/h_720,w_1280"/>
                 <div class="bookin-card-infos">
                   <h3><%= booking.fan.name %></h3>
                   <div class="d-flex ">
@@ -77,65 +80,3 @@
       </section>
   </div>
 
-<style>
-.bookin-card {
-  overflow: hidden;
-  height: 120px;
-  background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  display: flex;
-  align-items: center;
-  width: 600px;
-  background-color: #edf6f6cf;
-  border-radius: 3px;
-  margin-bottom: 20px;
-  position: relative;
-}
-  .prev-bookin-card {
-    background-color: #d8dbdbcf;
-  }
-.bookin-card-img {
-  height: 100%;
-  width: 120px;
-  object-fit: cover;
-}
-.bookin-card h2 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
-}
-.bookin-card p {
-  font-size: 12px;
-  line-height: 1.4;
-  opacity: .7;
-  margin-bottom: 0;
-  margin-top: 8px;
-}
-.bookin-card .bookin-card-infos {
-  padding: 26px;
-  width: 100%;
-}
-h2 {
-  margin-left: 160px;
-}
-#nobookingsh2{
-  margin: 0 100px;
-}
-.plus{
-  font-size: 160px;
-  width: fit-content;
-}
-.infobox{
-  margin-right: 5%;
-  width: 40%;
-}
-.review-tag {
-  position: absolute;
-  top: 15px;
-  right: 30px;
-}
-.review-tag:hover {
-  color: black;
-  text-shadow: white 1px 1px 5px ;
-}
-</style>
