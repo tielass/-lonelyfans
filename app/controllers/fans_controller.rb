@@ -1,13 +1,25 @@
 class FansController < ApplicationController
   def index
-    @fans = Fan.all
-    @markers = @fans.geocoded.map do |fan|
-      {
-        lat: fan.latitude,
-        lng: fan.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { fan: fan }),
-        image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/931/931949.png")
-      }
+    if params[:query].present?
+      @fans = Fan.search_by_something(params[:query])
+      @markers = @fans.geocoded.map do |fan|
+        {
+          lat: fan.latitude,
+          lng: fan.longitude,
+          info_window: render_to_string(partial: "info_window", locals: { fan: fan }),
+          image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/931/931949.png")
+        }
+      end
+    else
+      @fans = Fan.all
+      @markers = @fans.geocoded.map do |fan|
+        {
+          lat: fan.latitude,
+          lng: fan.longitude,
+          info_window: render_to_string(partial: "info_window", locals: { fan: fan }),
+          image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/931/931949.png")
+        }
+      end
     end
   end
 
@@ -21,8 +33,9 @@ class FansController < ApplicationController
     @fan.user = current_user
 
     if @fan.save
-      redirect_to profile_path
+      redirect_to fan_path(@fan)
     else
+      @bookings = current_user.bookings
       render 'pages/profile', status: :unprocessable_entity
     end
   end
@@ -37,6 +50,6 @@ class FansController < ApplicationController
                                 :category,
                                 :price,
                                 :user_id,
-                                :image_url)
+                                :photo)
   end
 end

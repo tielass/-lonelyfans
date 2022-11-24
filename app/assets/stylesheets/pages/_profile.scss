@@ -16,8 +16,15 @@
   }
 .bookin-card-img {
   height: 100%;
-  width: 120px;
+  width: 30%;
   object-fit: cover;
+
+}
+.prev-bookin-card-img {
+  height: 100%;
+  width: 30%;
+  object-fit: cover;
+  filter: grayscale(60%);
 }
 .bookin-card h2 {
   font-size: 16px;
