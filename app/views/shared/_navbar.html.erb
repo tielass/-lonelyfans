@@ -15,7 +15,7 @@
             <%= image_tag "https://res.cloudinary.com/ddlep0dr3/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1669127934/peter_y8hpvx.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%# link_to "user.name" %>
-              <%= link_to "User Profile", "#", class: "dropdown-item" %>
+              <%= link_to "User Profile", "/profile", class: "dropdown-item" %>
               <%# <%= link_to "Another action", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>

@@ -1,0 +1,60 @@
+.bookin-card {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  width: 600px;
+  background-color: #edf6f6cf;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  position: relative;
+}
+  .prev-bookin-card {
+    background-color: #d8dbdbcf;
+  }
+.bookin-card-img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+.bookin-card h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+.bookin-card p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+.bookin-card .bookin-card-infos {
+  padding: 26px;
+  width: 100%;
+}
+h2 {
+  margin-left: 160px;
+}
+#nobookingsh2{
+  margin: 0 100px;
+}
+.plus{
+  font-size: 160px;
+  width: fit-content;
+}
+.infobox{
+  margin-right: 5%;
+  width: 40%;
+}
+.review-tag {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+}
+.review-tag:hover {
+  color: black;
+  text-shadow: white 1px 1px 5px ;
+}

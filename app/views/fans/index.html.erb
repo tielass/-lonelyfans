@@ -1,31 +1,35 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg);">
 
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg);">
-    <div class="container">
-      <h1>LonelyFans <strong>helps you</strong> to <strong>find commited people</strong>!</h1>
-      <p>Change your life and find the right fans to clobber with other lonely fans.</p>
-      <a class="btn-lonelyfans" href="#">Find 'em now! </a>
-    </div>
+  <div class="container">
+    <h1>LonelyFans <strong>helps you</strong> to <strong>find commited people</strong>!</h1>
+    <p>Change your life and find the right fans to clobber with other lonely fans.</p>
+    <a class="btn-lonelyfans" href="#">Find 'em now! </a>
   </div>
-<div class="d-flex">
+</div>
+
+<div class="content">
   <div class="cards">
     <% @fans.each do |fan| %>
       <div class="card" style="width: 18rem;">
         <img src="https://res.cloudinary.com/ddlep0dr3/image/upload/v1669127561/fun_lads_bxvtab.jpg" class="card-img-top" alt="...">
+
         <div class="card-body">
+
           <%= link_to fan.name.capitalize, fan_path(fan), class:"Dark link lead" %>
-          <p class="card-text"><%= fan.description.first(40) %></p>
+          <p class="card-text"><%= fan.description.first(35) %></p>
           <span class="badge rounded-pill bg-success"><%= fan.category.first(25) %></span>
           <p class="card-text">$ <%= fan.price %> per hour</p>
         </div>
       </div>
     <% end %>
-  </div>
-  <%# <%= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill %>
-  <%# cl_image_path list.photo.key, height: 300, crop: :fill %>
 
-  <div style="width: 100%; height: 600px;"
+
+  </div>
+  <div id="map" style="width: 100%; height: 600px;"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
+<%# <%= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill %>
+<%# cl_image_path list.photo.key, height: 300, crop: :fill %>
