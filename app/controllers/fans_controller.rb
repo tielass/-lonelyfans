@@ -21,7 +21,7 @@ class FansController < ApplicationController
     @fan.user = current_user
 
     if @fan.save
-      redirect_to profile_path
+      redirect_to fan_path(@fan)
     else
       render 'pages/profile', status: :unprocessable_entity
     end
