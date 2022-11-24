@@ -5,11 +5,11 @@
       <%= simple_form_for(@fan) do |f| %>
         <div class="d-flex">
           <%= f.input :name %>
-          <%= f.input :nationality, collection: Fan::NATIONS, prompt: 'select nationality' %>
+          <%= f.input :nationality, collection: Fan::NATIONS, prompt: 'Select Nationality' %>
         </div>
         <%= f.input :photo, as: :file, label: "Add your fan Image"%>
         <%= f.input :description %>
-        <%= f.input :category, collection: Fan::CATEGORY, prompt: 'select characteristics' %>
+        <%= f.input :category, collection: Fan::CATEGORY, prompt: 'Select Characteristics' %>
         <%= f.input :address %>
         <%= f.input :price %>
         <%= f.submit %>
