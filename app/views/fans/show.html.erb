@@ -16,7 +16,12 @@
     <%= simple_form_for ([@fan, @booking]) do |f| %>
       <%= f.input :start_date %>
       <%= f.input :end_date %>
-      <%= f.button :submit, class:"btn btn-outline-dark m-3" %>
+      <% if current_user %>
+        <%= f.button :submit, class:"btn btn-outline-dark m-3" %>
+      <% else %>
+        <p>To be able to book a fan, you need to have an account</p>
+        <%= link_to "Log in", new_user_session_path, class:"btn-lonelyfans" %>
+      <% end %>
     <% end %>
   </div>
 </div>
