@@ -13,9 +13,9 @@
 
   <div class="col-12 col-sm-6">
     <h2>Book this fan!</h2>
-    <%= simple_form_for ([@fan, @booking]) do |f| %>
-      <%= f.input :start_date %>
-      <%= f.input :end_date %>
+    <%= simple_form_for ([@fan, @booking]), data: { controller: 'flatpickr' } do |f| %>
+      <%= f.input :start_time, as: :string, :label => "Start Date", input_html: { data: { flatpickr_target: "startTime" } } %>
+      <%= f.input :end_time, as: :string, :label => "End Date", input_html: { data: { flatpickr_target: "endTime" } } %>
       <%= f.button :submit, class:"btn btn-outline-dark m-3" %>
     <% end %>
   </div>
