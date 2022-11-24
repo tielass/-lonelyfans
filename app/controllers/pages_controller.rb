@@ -13,6 +13,6 @@ class PagesController < ApplicationController
   private
 
   def fan_params
-    params.permit(:nationality, :name, :description, :availability, :category, :price, :user_id, :image_url)
+    params.permit(:nationality, :name, :description, :availability, :category, :price, :user_id, :photo)
   end
 end
