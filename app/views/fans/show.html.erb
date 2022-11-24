@@ -17,10 +17,10 @@
       <%= f.input :start_time, as: :string, :label => "Start Date", input_html: { data: { flatpickr_target: "startTime" } } %>
       <%= f.input :end_time, as: :string, :label => "End Date", input_html: { data: { flatpickr_target: "endTime" } } %>
       <%= f.button :submit, class:"btn btn-outline-dark m-3" %>
-      <% else %>
-        <p>To be able to book a fan, you need to have an account</p>
-        <%= link_to "Log in", new_user_session_path, class:"btn-lonelyfans" %>
-      <% end %>
+        <% unless user_signed_in? %>
+          <%= link_to "Log in", new_user_session_path, class:"btn-lonelyfans" %>
+          <p>To be able to book a fan, you need to have an account</p>
+        <% end %>
     <% end %>
   </div>
 </div>
