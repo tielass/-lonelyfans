@@ -14,15 +14,11 @@ puts "inserting fans"
 12.times do
   new_user = User.create!(email: Faker::Internet.email, password: "password")
 
-  new_fan = Fan.create!(name: Faker::Marketing.buzzwords, nationality: Faker::Nation.nationality, description: Faker::ChuckNorris.fact, category: Faker::Fantasy::Tolkien.poem, address: Faker::Address.street_name, price:  rand(10..100), user: new_user )
-  #user.photo.attached?
- 
+  new_fan = Fan.create!(name: Faker::Marketing.buzzwords, nationality: Fan::NATIONS.sample, description: Faker::ChuckNorris.fact, category: Fan::CATEGORY.sample, address: Faker::Address.street_name, price:  rand(10..100), user: new_user )
   # file = URI.open("https://source.unsplash.com/random/900%C3%97700/?fans")
   # article = Article.new(title: "fans title", body: "A great console")
   # article.photo.attach(io: file, filename: "fan.png", content_type: "image/png")
   # article.save
-
-  # user.photo.attached?
 
   puts "#{new_fan.name} was sucessfully created!"
 end
