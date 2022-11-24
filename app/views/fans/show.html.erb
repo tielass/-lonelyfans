@@ -14,10 +14,9 @@
   <div class="col-12 col-sm-6">
     <h2>Book this fan!</h2>
     <%= simple_form_for ([@fan, @booking]) do |f| %>
-      <%= f.input :start_date %>
-      <%= f.input :end_date %>
+      <%= f.input :start_date, :order => [:day, :month, :year] %>
+      <%= f.input :end_date, :order => [:day, :month, :year] %>
       <%= f.button :submit, class:"btn btn-outline-dark m-3" %>
     <% end %>
   </div>
 </div>
-
