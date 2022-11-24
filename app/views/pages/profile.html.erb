@@ -5,7 +5,7 @@
       <%= simple_form_for(@fan) do |f| %>
         <%= f.input :nationality, collection: Fan::NATIONS, prompt: 'select nationality' %>
         <%= f.input :name %>
-        <%= f.input :image_url, as: :file, label: "Add your fan Image"%>
+        <%= f.input :photo, as: :file, label: "Add your fan Image"%>
         <%= f.input :description %>
         <%= f.input :category, collection: Fan::CATEGORY, prompt: 'select characteristics' %>
         <%= f.input :price %>
