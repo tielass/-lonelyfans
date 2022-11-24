@@ -3,11 +3,11 @@
   <div class="fan-form container w-25">
     <h4>List yourself as a fan</h4>
       <%= simple_form_for(@fan) do |f| %>
-        <%= f.input :nationality, collection: Fan::NATIONS, prompt: 'select nationality' %>
+        <%= f.input :nationality, collection: Fan::NATIONS, prompt: 'Select Nationality' %>
         <%= f.input :name %>
         <%= f.input :image_url, label: "Add your fan Image"%>
         <%= f.input :description %>
-        <%= f.input :category, collection: Fan::CATEGORY, prompt: 'select characteristics' %>
+        <%= f.input :category, collection: Fan::CATEGORY, prompt: 'Select Characteristics' %>
         <%= f.input :price %>
         <%= f.submit %>
       <% end %>
