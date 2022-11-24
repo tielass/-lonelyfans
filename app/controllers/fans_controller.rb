@@ -6,7 +6,7 @@ class FansController < ApplicationController
         lat: fan.latitude,
         lng: fan.longitude,
         info_window: render_to_string(partial: "info_window", locals: { fan: fan }),
-        image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/931/931949.png")
+        photo: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/931/931949.png")
       }
     end
   end
@@ -23,6 +23,7 @@ class FansController < ApplicationController
     if @fan.save
       redirect_to fan_path(@fan)
     else
+      @bookings = current_user.bookings
       render 'pages/profile', status: :unprocessable_entity
     end
   end
@@ -37,6 +38,6 @@ class FansController < ApplicationController
                                 :category,
                                 :price,
                                 :user_id,
-                                :image_url)
+                                :photo)
   end
 end
