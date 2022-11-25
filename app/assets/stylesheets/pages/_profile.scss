@@ -57,6 +57,10 @@ h2 {
   margin-right: 5%;
   width: 40%;
 }
+.prev-infobox{
+  // margin-right: 5%;
+  width: 40%;
+}
 .review-tag {
   position: absolute;
   top: 15px;
@@ -76,12 +80,7 @@ h2 {
   margin: auto;
 }
  .trash{
-  display: none;
   font-size: 18px;
-}
-.hovertrash:hover .trash{
-  display: block;
-  color: rgb(72, 72, 72);
 }
 @media only screen and (max-width: 1100px) {
   .fan-formandbooking-index{

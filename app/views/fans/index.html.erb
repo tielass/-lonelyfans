@@ -33,13 +33,20 @@
 <div class="content">
   <div class="cards">
     <% @fans.each do |fan| %>
+  
       <div class="card" style="width: 18rem;">
-        <%= cl_image_tag fan.photo.key, class:"card-img-top", crop: :fill %>
+        <%= link_to fan_path(fan) do %>
+          <%= cl_image_tag fan.photo.key, class:"card-img-top", crop: :fill %>
+        <% end %>
         <div class="card-body">
-          <%= link_to fan.name.capitalize, fan_path(fan), class:"Dark link lead" %>
-          <p class="card-text"><%= fan.description.first(35) %></p>
-          <span class="badge rounded-pill bg-success"><%= fan.category.first(25) %></span>
-          <p class="card-text">$ <%= fan.price %> per hour</p>
+            <%= link_to fan.name.capitalize, fan_path(fan), class:"Dark link lead" %>
+         <%= link_to fan_path(fan) do %>
+            <p class="card-text"><%= fan.description.first(35) %></p>
+            <% end %>
+            <span class="badge rounded-pill bg-success"><%= fan.category.first(25) %></span>
+         <%= link_to fan_path(fan) do %>
+            <p class="card-text">$ <%= fan.price %> per hour</p>
+           <% end %>
         </div>
       </div>
     <% end %>
