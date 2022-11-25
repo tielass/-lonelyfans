@@ -30,6 +30,7 @@
 
   <container1 class="mx-5 d-block" style="w-40%" id="wholeindexlist">
 
+
     <% if @future_bookings.empty? == true %>
       <div>
         <h2 class="mt-5 mr-5" id="nobookingsh2"><%= "You haven't made any bookings yet" %></h2><br>
@@ -40,7 +41,7 @@
 
 
     <% if @future_bookings.empty? == false %>
-      <h3>Upcoming Bookings</h3>
+      <h3>Upcoming Pending Bookings</h3>
     <% end %>
 
   <% @future_bookings.each do |booking| %>
@@ -55,10 +56,19 @@
                       <div class="infobox">
                         <p>Starts on: <%= booking.start_time  %></p>
                         <p>Ends on: <%= booking.end_time %></p>
+                        <% if booking.status == true %>
+                          <% if @fan.user = current_user %>
+                            <p><strong>CONFIRMED</strong></p>
+                          <% else %>
+                            <p><strong>PENDING</strong></p>
+                          <% end %>
+                        <% end %>
+
                       </div>
                       <div class="infobox">
                         <p style="padding-left: 15px;"><%= booking.fan.nationality %></p>
                         <p>At: <%= booking.fan.address %></p>
+                         <%= link_to "Edit Booking", edit_booking_path(booking), class: "btn" %>
                       </div>
                     </div>
                   </div>

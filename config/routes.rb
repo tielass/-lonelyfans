@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :bookings, only: [:show, :new, :create, :update]
   end
 
+  resources :bookings
+
   resources :map, only: [:show]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

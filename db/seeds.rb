@@ -23,3 +23,43 @@ puts "inserting fans"
   puts "#{new_fan.name} was sucessfully created!"
 end
 puts "done."
+
+# new_user = User.create!(email: paul_user@user.com, password: "password")
+# new_user = User.create!(email: eoin_user@user.com, password: "password")
+# new_user = User.create!(email: alexey_user@user.com, password: "password")
+# new_user = User.create!(email: misho@user.com, password: "password")
+
+# new_fan = Fan.create!(
+#   name: "Paul",
+#   image_url: ""
+#   nationality: "Ecuador",
+#   description: "Ecuador",
+#   category: "Violent",
+#   address: "Rudi-Dutschke-Straße 26, 10969 Berlin",
+#   price:  rand(10..100), user: paul_user
+# )
+# new_fan = Fan.create!(
+#   name: "Eoin",
+#   nationality: "Ecuador",
+#   description: "Ecuador",
+#   category: "Violent",
+#   address: "Rudi-Dutschke-Straße 26, 10969 Berlin",
+#   price:  rand(10..100), user: paul_user
+# )
+# new_fan = Fan.create!(
+#   name: "Alexy",
+#   nationality: "Ecuador",
+#   description: "Ecuador",
+#   category: "Violent",
+#   address: "Rudi-Dutschke-Straße 26, 10969 Berlin",
+#   price:  rand(10..100), user: paul_user
+# )
+
+# new_fan = Fan.create!(
+#   name: "Fan1",
+#   nationality: "Ecuador",
+#   description: "Ecuador",
+#   category: "Violent",
+#   address: "Rudi-Dutschke-Straße 26, 10969 Berlin",
+#   price:  rand(10..100), user: paul_user
+# )

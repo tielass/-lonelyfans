@@ -8,6 +8,17 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
+  def edit
+    @booking = Booking.find(params[:id])
+  end
+
+  def update
+    @booking = Booking.find(params[:id])
+    @booking.update(booking_params)
+    redirect_to profile_path
+    # Will raise ActiveModel::ForbiddenAttributesError
+  end
+
   def new
     @fan = Fan.find(params[:fan_id])
     @booking = Booking.new
