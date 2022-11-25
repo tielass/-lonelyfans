@@ -30,7 +30,7 @@
 
   <container1 class="mx-3 d-block" style="w-40%" id="wholeindexlist">
 
-    <% if @future_bookings.present? == false %>
+    <% if @future_bookings.present? == false && @past_bookings.present? ==false %>
       <div>
         <h2 class="mt-5 mr-5" id="nobookingsh2"><%= "You haven't made any bookings yet" %></h2><br>
         <p class="plus mx-auto"><%= link_to "+", fans_path  %></p>
