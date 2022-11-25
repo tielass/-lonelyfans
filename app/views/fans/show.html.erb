@@ -6,14 +6,10 @@
         <span class="badge rounded-pill bg-success"><%= @fan.category %></span>
         <p class="card-text pt-2"><%= @fan.description %></p>
         <p class="card-text">$ <%= @fan.price %> per hour</p>
-      </div>
     </div>
   </div>
 
   <div class="col-12 col-sm-6">
-
-
-
   <h2>Book this fan!</h2>
   <i class="fa-solid fa-magnifying-glass"></i>
     <%= simple_form_for ([@fan, @booking]) do |f| %>
