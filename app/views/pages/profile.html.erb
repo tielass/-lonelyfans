@@ -7,6 +7,7 @@
       <h4 class="pb-3">List a fan!</h4>
     </div>
       <%= simple_form_for(@fan) do |f| %>
+
         <div class="d-flex justify-content-between">
           <div class="w-50 pe-3">
             <%= f.input :name, placeholder: 'John' %>
@@ -23,6 +24,18 @@
         <div class="d-grid gap-2">
           <%= f.button :submit, class:"btn-lonelyfans btn-block" %>
         </div>
+
+        <div class="d-flex">
+          <%= f.input :name %>
+          <%= f.input :nationality, collection: Fan::NATIONS, prompt: 'Select Nationality' %>
+        </div>
+        <%= f.input :photo, as: :file, label: "Add your fan Image"%>
+        <%= f.input :description %>
+        <%= f.input :category, collection: Fan::CATEGORY, prompt: 'Select Characteristics' %>
+        <%= f.input :address %>
+        <%= f.input :price %>
+        <%= f.submit %>
+
       <% end %>
   </div>
 

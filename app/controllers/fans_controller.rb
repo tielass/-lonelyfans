@@ -2,16 +2,9 @@ class FansController < ApplicationController
   def index
     if params[:query].present?
       @fans = Fan.search_by_something(params[:query])
-      @markers = @fans.geocoded.map do |fan|
-        {
-          lat: fan.latitude,
-          lng: fan.longitude,
-          info_window: render_to_string(partial: "info_window", locals: { fan: fan }),
-          image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/931/931949.png")
-        }
-      end
     else
       @fans = Fan.all
+
       @markers = @fans.geocoded.map do |fan|
         {
           lat: fan.latitude,
@@ -20,45 +13,18 @@ class FansController < ApplicationController
           image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/931/931949.png")
         }
       end
-      # if params[:user].present? || params[:query].present? || params[:size].present?
-      #   @offers = policy_scope(Offer).global_search(params[:user]) if params[:user].present?
-
-      #   if @offers.nil?
-      #     @offers = policy_scope(Offer).global_search(params[:query]) if params[:query].present?
-      #   elsif params[:query].present?
-      #     @offers = @offers.global_search(params[:query])
-      #   end
-
-      #   if @offers.nil?
-      #     @offers = policy_scope(Offer).global_search(params[:size]) if params[:size].present?
-      #   else
-      #     @offers = @offers.global_search(params[:size]) if params[:size].present?
-      #   end
-      # else
-      #   @offers = policy_scope(Offer)
-      # end
+      
+    end
+    @markers = @fans.geocoded.map do |fan|
+      {
+        lat: fan.latitude,
+        lng: fan.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { fan: fan }),
+        image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/931/931949.png")
+      }
+      
     end
   end
-
-  # def index
-  #   if params[:user].present? || params[:query].present? || params[:size].present?
-  #     @offers = policy_scope(Offer).global_search(params[:user]) if params[:user].present?
-
-  #     if @offers.nil?
-  #       @offers = policy_scope(Offer).global_search(params[:query]) if params[:query].present?
-  #     elsif params[:query].present?
-  #       @offers = @offers.global_search(params[:query])
-  #     end
-
-  #     if @offers.nil?
-  #       @offers = policy_scope(Offer).global_search(params[:size]) if params[:size].present?
-  #     else
-  #       @offers = @offers.global_search(params[:size]) if params[:size].present?
-  #     end
-  #   else
-  #     @offers = policy_scope(Offer)
-  #   end
-  # end
 
   def loud
     @fans = Fan.where(category: "loud")
@@ -111,6 +77,7 @@ class FansController < ApplicationController
 
   def fans_params
     params.require(:fan).permit(:nationality,
+                                :address,
                                 :name,
                                 :description,
                                 :availability,
