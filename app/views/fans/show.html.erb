@@ -1,5 +1,5 @@
 <div class="container d-flex justify-items-center p-4">
-  <div class="me-5 ms-3 card-img">
+  <div class="me-5 ms-3 card-img booking-border">
     <div style="width: 30rem;">
       <%= cl_image_tag @fan.photo.key, class:"card-img-top", crop: :fill %>
         <h5 class="card-text pb-2"><%= @fan.name.capitalize %></h5>
@@ -11,11 +11,19 @@
   </div>
 
   <div class="col-12 col-sm-6">
-    <h2>Book this fan!</h2>
+
+
+
+  <h2>Book this fan!</h2>
+  <i class="fa-solid fa-magnifying-glass"></i>
     <%= simple_form_for ([@fan, @booking]) do |f| %>
-      <%= f.input :start_date %>
-      <%= f.input :end_date %>
+      <%= f.input :start_time, as: :date, :label => "Start Date", html5:true %>
+      <%= f.input :end_time, as: :date, :label => "End Date", html5:true %>
       <%= f.button :submit, class:"btn btn-outline-dark m-3" %>
+        <% unless user_signed_in? %>
+          <%= link_to "Log in", new_user_session_path, class:"btn-lonelyfans" %>
+          <p>To be able to book a fan, you need to have an account</p>
+        <% end %>
     <% end %>
   </div>
 </div>

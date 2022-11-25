@@ -1,20 +1,33 @@
-<h2 class="my-5">User Profile</h2>
-<div class="fan-formandbooking-index mb-5 mx-5">
-  <div class="fan-form container">
-    <h4>List yourself as a fan</h4>
+
+<div class="d-flex justify-content-center">
+  <h1 class="my-5 text"><%= "Hello #{current_user.email.split("@")[0].capitalize}, welcome to your profile page!"  %></h1>
+</div>
+<div class="fan-formandbooking-index d-flex mb-4 mx-4">
+  <div class="fan-form container py-4">
+    <div class="d-flex justify-content-center pb-2">
+      <h4 class="pb-3">List a fan!</h4>
+    </div>
       <%= simple_form_for(@fan) do |f| %>
-        <div class="d-flex">
-          <%= f.input :name %>
-          <%= f.input :nationality, collection: Fan::NATIONS, prompt: 'select nationality' %>
+
+        <div class="d-flex justify-content-between">
+          <div class="w-50 pe-3">
+            <%= f.input :name, placeholder: 'John' %>
+          </div>
+          <div class="w-50">
+            <%= f.input :nationality, collection: Fan::NATIONS, prompt: 'Select nationality' %>
+          </div>
         </div>
         <%= f.input :photo, as: :file, label: "Add your fan Image"%>
-        <%= f.input :description %>
-        <%= f.input :category, collection: Fan::CATEGORY, prompt: 'select characteristics' %>
-        <%= f.input :address %>
-        <%= f.input :price %>
-        <%= f.submit %>
+        <%= f.input :description, placeholder: 'I can chant like no one else...' %>
+        <%= f.input :category, collection: Fan::CATEGORY, prompt: 'Select characteristics' %>
+        <%= f.input :address, placeholder: '21 Church Street London' %>
+        <%= f.input :price, placeholder: '$ 15' %>
+        <div class="d-grid gap-2">
+          <%= f.button :submit, class:"btn-lonelyfans btn-block" %>
+        </div>
       <% end %>
   </div>
+
 
 
   <container1 class="mx-5 d-block" style="w-40%" id="wholeindexlist">
@@ -22,13 +35,15 @@
     <% if @future_bookings.empty? %>
       <div>
         <h2 class="mt-5 mr-5" id="nobookingsh2"><%= "You haven't made any bookings yet" %></h2><br>
+
         <p class="plus mx-auto"><%= link_to "+", fans_path  %></p>
       </div>
       </div>
     <% end %>
 
+
     <% if @future_bookings.empty? == false %>
-      <h3>Upcoming Bookings</h3x  >
+      <h3>Upcoming Bookings</h3>
     <% end %>
 
   <% @future_bookings.each do |booking| %>
@@ -41,8 +56,8 @@
                     <h3><%= booking.fan.name %></h3>
                     <div class="d-flex ">
                       <div class="infobox">
-                        <p>Starts on: <%= booking.start_date  %></p>
-                        <p>Ends on: <%= booking.end_date %></p>
+                        <p>Starts on: <%= booking.start_time  %></p>
+                        <p>Ends on: <%= booking.end_time %></p>
                       </div>
                       <div class="infobox">
                         <p style="padding-left: 15px;"><%= booking.fan.nationality %></p>
@@ -59,14 +74,17 @@
 
 <section class="bcard">
     <% @past_bookings.each do |booking| %>
+
             <div class="bookin-card prev-bookin-card">
               <%= cl_image_tag booking.fan.photo.key, class:"prev-bookin-card-img", crop: :fill %>
                 <div class="bookin-card-infos">
                   <h3><%= booking.fan.name %></h3>
-                  <div class="d-flex">
-                    <div class="infobox hovertrash">
-                      <p>Started on: <%= booking.start_date  %></p>
-                      <p>Ended on: <%= booking.end_date %></p>
+
+                  <div class="d-flex ">
+                    <div class="infobox">
+                      <p>Starts on: <%= booking.start_time  %></p>
+                      <p>Ends on: <%= booking.end_time %></p>
+
                     </div>
                     <div class="infobox">
                       <p style="padding-left: 15px;"><%= booking.fan.nationality %></p>
@@ -80,7 +98,9 @@
                   </div>
                 </div>
             </div>
+
    <% end %>
 
     </div>
  </container1>
+

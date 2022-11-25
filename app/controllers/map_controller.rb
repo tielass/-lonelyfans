@@ -5,6 +5,7 @@ class MapController < ApplicationController
       {
         lat: fan.latitude,
         lng: fan.longitude,
+        address: fan.address,
         info_window: render_to_string(partial: "info_window", locals: { fan: fan }),
         photo: helpers.asset_url("lonelyfans.png")
       }
