@@ -20,13 +20,24 @@
   </div>
 </div>
 <%# Filters %>
- <%# <%= render "filters" %>
-<%# Search bars %>
-<div class="container w-50 py-5">
-  <%= form_with url: fans_path, method: :get, class:"d-flex" do %>
-    <%= text_field_tag :user, params[:user], class: "form-control me-3 filters-form", placeholder: "Find the best fan" %>
-    <%= text_field_tag :query, params[:query], class: "form-control filters-form border-end-0", placeholder: "Something" %>
-    <%= submit_tag "Search", class:"filters-search" %>
+<div class="container py-5">
+  <div class="d-flex justify-content-center">
+    <%= form_with url: fans_path, method: :get, data: { turbo: false }, class:"d-flex" do |f| %>
+      <%= f.select :category,
+        Fan::CATEGORY,
+        {include_blank: "category"},
+        class:"px-4"
+      %>
+      <%= f.select :nationality,
+        Fan::NATIONS,
+        {include_blank: "nation"},
+        class:"px-4"
+        %>
+      <%# <%= submit_tag "Search", class:"filters-search btn-lonelyfans px-5" %>
+      <%= button_tag type: "submit" do %>
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <% end %>
+  </div>
   <% end %>
 </div>
 <%# Content %>
