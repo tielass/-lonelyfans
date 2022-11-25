@@ -24,18 +24,6 @@
         <div class="d-grid gap-2">
           <%= f.button :submit, class:"btn-lonelyfans btn-block" %>
         </div>
-
-        <div class="d-flex">
-          <%= f.input :name %>
-          <%= f.input :nationality, collection: Fan::NATIONS, prompt: 'Select Nationality' %>
-        </div>
-        <%= f.input :photo, as: :file, label: "Add your fan Image"%>
-        <%= f.input :description %>
-        <%= f.input :category, collection: Fan::CATEGORY, prompt: 'Select Characteristics' %>
-        <%= f.input :address %>
-        <%= f.input :price %>
-        <%= f.submit %>
-
       <% end %>
   </div>
 
@@ -51,15 +39,15 @@
         <h4 class="text-center mb-5 mt-2">Your bookings</h4>
           <% @bookings.each do |booking| %>
               <section>
-            <% if booking.end_date > Date.today %>
+            <% if booking.end_time > Date.today %>
                 <div class="bookin-card">
                   <img class="bookin-card-img" style="width:30%;" src="https://www.billboard.com/wp-content/uploads/2022/11/02-Oliver-Tree-billboard-Jimmy-Fontaine-1548.jpg?w=942&h=623&crop=1"/>
                     <div class="bookin-card-infos">
                       <h3><%= booking.fan.name.capitalize %></h3>
                       <div class="d-flex ">
                         <div class="infobox">
-                          <p>Starts on: <%= booking.start_date  %></p>
-                          <p>Ends on: <%= booking.end_date %></p>
+                          <p>Starts on: <%= booking.start_time  %></p>
+                          <p>Ends on: <%= booking.end_time %></p>
                         </div>
                         <div class="infobox">
                           <p style="padding-left: 15px;"><%= booking.fan.nationality %></p>
@@ -68,13 +56,13 @@
                       </div>
                     </div>
               </div>
-          <% elsif (booking.end_date > Date.today) == 0 %>
+          <% elsif (booking.end_time > Date.today) == 0 %>
             <h2>You have no bookings coming up</h2>
           <% else %>
           <p></p>
         <% end %>
 
-        <% if booking.end_date < Date.today %>
+        <% if booking.end_time < Date.today %>
           <h5 class="mt-4">Previews bookings</h5>
             <div class="bookin-card prev-bookin-card">
               <img class="prev-bookin-card-img"src="https://media.cnn.com/api/v1/images/stellar/prod/160617095325-01-eurocup-irish-fans.jpg?q=x_5,y_317,h_2546,w_4524,c_crop/h_720,w_1280"/>
@@ -82,8 +70,8 @@
                   <h3><%= booking.fan.name %></h3>
                   <div class="d-flex ">
                     <div class="infobox">
-                      <p>Starts on: <%= booking.start_date  %></p>
-                      <p>Ends on: <%= booking.end_date %></p>
+                      <p>Starts on: <%= booking.start_time  %></p>
+                      <p>Ends on: <%= booking.end_time %></p>
                     </div>
                     <div class="infobox">
                       <p style="padding-left: 15px;"><%= booking.fan.nationality %></p>
@@ -93,7 +81,7 @@
                   </div>
                 </div>
             </div>
-        <% elsif (booking.end_date < Date.today) == 0 %>
+        <% elsif (booking.end_time < Date.today) == 0 %>
           <h2>You have no old bookings</h2>
         <% else %>
           <p></p>
