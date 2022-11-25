@@ -4,14 +4,18 @@
   box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
       transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
   cursor: pointer;
+  width: 250px;
+  height: 300px;
 }
 
 .card img {
   border-radius: 20px 20px 0 0;
+  max-height: 150px;
+  object-fit: fill;
 }
 
 .card:hover{
-  transform: scale(1.05);
+  transform: scale(1.03);
   box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
 

@@ -21,7 +21,7 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to fan_booking_path(@fan, @booking)
     else
-      render :new, status: unprocessable_entity
+      render :show, status: :unprocessable_entity
     end
   end
 
@@ -34,6 +34,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :status, :user_id, :fan_id)
+    params.require(:booking).permit(:start_time, :end_time, :status, :user_id, :fan_id)
   end
 end

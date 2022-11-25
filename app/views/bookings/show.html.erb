@@ -4,15 +4,15 @@
     <img src="https://cdn-icons-png.flaticon.com/512/3143/3143636.png" />
     <div class="card-product-infos">
       <h2>Your booking confirmation</h2>
-      <p>Your start date: <strong><%= @booking.start_date %></strong></p>
-      <p>Your end date: <strong><%= @booking.end_date %></strong></p>
+      <p>Your start date: <strong><%= @booking.start_time %></strong></p>
+      <p>Your end date: <strong><%= @booking.end_time %></strong></p>
       <p>Status: <strong>pending</strong>/done/wip</p>
     </div>
   </div>
-
-  <%#= @fan.name %>
-  <%#= @booking.start_date %>
-
+  <div class="d-flex justify-content-center">
+    <div class="pe-4"><%= link_to "Homepage", fans_path, class:"btn-lonelyfans" %></div>
+    <div><%= link_to "Bookings", profile_path, class:"btn-lonelyfans" %></div>
+  </div>
 </div>
 
         <%# <ul> %>
