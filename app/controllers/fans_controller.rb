@@ -4,6 +4,16 @@ class FansController < ApplicationController
       @fans = Fan.search_by_something(params[:query])
     else
       @fans = Fan.all
+
+      @markers = @fans.geocoded.map do |fan|
+        {
+          lat: fan.latitude,
+          lng: fan.longitude,
+          info_window: render_to_string(partial: "info_window", locals: { fan: fan }),
+          image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/931/931949.png")
+        }
+      end
+      
     end
     @markers = @fans.geocoded.map do |fan|
       {
@@ -12,8 +22,39 @@ class FansController < ApplicationController
         info_window: render_to_string(partial: "info_window", locals: { fan: fan }),
         image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/931/931949.png")
       }
+      
     end
   end
+
+  def loud
+    @fans = Fan.where(category: "loud")
+  end
+
+  def violent
+    @fans = Fan.where(category: "violent")
+  end
+
+  def supportive
+    @fans = Fan.where(category: "supportive")
+  end
+
+  def serious
+    @fans = Fan.where(category: "serious")
+  end
+
+  def settled
+    @fans = Fan.where(category: "settled")
+  end
+
+  def good_behaviour
+    @fans = Fan.where(category: "good behaviour")
+  end
+
+  def drunk
+    @fans = Fan.where(category: "drunk")
+  end
+
+  # CRUD
 
   def show
     @fan = Fan.find(params[:id])

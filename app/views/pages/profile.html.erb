@@ -1,8 +1,30 @@
-<h2 class="my-5">User Profil</h2>
-<div class="fan-formandbooking-index d-flex mb-5 mx-5">
-  <div class="fan-form container w-25">
-    <h4>List yourself as a fan</h4>
+<div class="d-flex justify-content-center">
+  <h1 class="my-5 text"><%= "Hello #{current_user.email.split("@")[0].capitalize}, welcome to your profile page!"  %></h1>
+</div>
+<div class="fan-formandbooking-index d-flex mb-4 mx-4">
+  <div class="fan-form container py-4">
+    <div class="d-flex justify-content-center pb-2">
+      <h4 class="pb-3">List a fan!</h4>
+    </div>
       <%= simple_form_for(@fan) do |f| %>
+
+        <div class="d-flex justify-content-between">
+          <div class="w-50 pe-3">
+            <%= f.input :name, placeholder: 'John' %>
+          </div>
+          <div class="w-50">
+            <%= f.input :nationality, collection: Fan::NATIONS, prompt: 'Select nationality' %>
+          </div>
+        </div>
+        <%= f.input :photo, as: :file, label: "Add your fan Image"%>
+        <%= f.input :description, placeholder: 'I can chant like no one else...' %>
+        <%= f.input :category, collection: Fan::CATEGORY, prompt: 'Select characteristics' %>
+        <%= f.input :address, placeholder: '21 Church Street London' %>
+        <%= f.input :price, placeholder: '$ 15' %>
+        <div class="d-grid gap-2">
+          <%= f.button :submit, class:"btn-lonelyfans btn-block" %>
+        </div>
+
         <div class="d-flex">
           <%= f.input :name %>
           <%= f.input :nationality, collection: Fan::NATIONS, prompt: 'Select Nationality' %>
@@ -13,26 +35,27 @@
         <%= f.input :address %>
         <%= f.input :price %>
         <%= f.submit %>
+
       <% end %>
   </div>
 
     <% if @bookings.empty? %>
-      <div>
-        <h2 class="mt-5 mr-5" id="nobookingsh2"><%= "You haven't made any bookings yet" %></h2><br>
+      <div class="bookings-container">
+        <h2 class="" id="nobookingsh2"><%= "You haven't made any bookings yet" %></h2><br>
         <p class="plus mx-auto"><%= link_to "+", fans_path  %></p>
       </div>
       </div>
     <% end %>
 
       <section id="wholeindexlist">
+        <h4 class="text-center mb-5 mt-2">Your bookings</h4>
           <% @bookings.each do |booking| %>
               <section>
             <% if booking.end_date > Date.today %>
-        <h4 class="my-3">Your bookings</h4>
                 <div class="bookin-card">
                   <img class="bookin-card-img" style="width:30%;" src="https://www.billboard.com/wp-content/uploads/2022/11/02-Oliver-Tree-billboard-Jimmy-Fontaine-1548.jpg?w=942&h=623&crop=1"/>
                     <div class="bookin-card-infos">
-                      <h3><%= booking.fan.name %></h3>
+                      <h3><%= booking.fan.name.capitalize %></h3>
                       <div class="d-flex ">
                         <div class="infobox">
                           <p>Starts on: <%= booking.start_date  %></p>
@@ -79,4 +102,3 @@
       <% end %>
       </section>
   </div>
-
