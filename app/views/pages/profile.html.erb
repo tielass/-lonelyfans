@@ -1,3 +1,4 @@
+
 <div class="d-flex justify-content-center">
   <h1 class="my-5 text"><%= "Hello #{current_user.email.split("@")[0].capitalize}, welcome to your profile page!"  %></h1>
 </div>
@@ -6,6 +7,7 @@
     <div class="d-flex justify-content-center pb-2">
       <h4 class="pb-3">List a fan!</h4>
     </div>
+
       <%= simple_form_for(@fan) do |f| %>
 
         <div class="d-flex justify-content-between">
@@ -27,66 +29,77 @@
       <% end %>
   </div>
 
-    <% if @bookings.empty? %>
-      <div class="bookings-container">
-        <h2 class="" id="nobookingsh2"><%= "You haven't made any bookings yet" %></h2><br>
+  <container1 class="mx-5 d-block" style="w-40%" id="wholeindexlist">
+
+    <% if @future_bookings.empty? %>
+      <div>
+        <h2 class="mt-5 mr-5" id="nobookingsh2"><%= "You haven't made any bookings yet" %></h2><br>
+
         <p class="plus mx-auto"><%= link_to "+", fans_path  %></p>
       </div>
       </div>
     <% end %>
 
-      <section id="wholeindexlist">
-        <h4 class="text-center mb-5 mt-2">Your bookings</h4>
-          <% @bookings.each do |booking| %>
-              <section>
-            <% if booking.end_time > Date.today %>
-                <div class="bookin-card">
-                  <img class="bookin-card-img" style="width:30%;" src="https://www.billboard.com/wp-content/uploads/2022/11/02-Oliver-Tree-billboard-Jimmy-Fontaine-1548.jpg?w=942&h=623&crop=1"/>
-                    <div class="bookin-card-infos">
-                      <h3><%= booking.fan.name.capitalize %></h3>
-                      <div class="d-flex ">
-                        <div class="infobox">
-                          <p>Starts on: <%= booking.start_time  %></p>
-                          <p>Ends on: <%= booking.end_time %></p>
-                        </div>
-                        <div class="infobox">
-                          <p style="padding-left: 15px;"><%= booking.fan.nationality %></p>
-                          <p>At: <%= booking.fan.address %></p>
-                        </div>
+
+    <% if @future_bookings.empty? == false %>
+      <h3>Upcoming Bookings</h3>
+    <% end %>
+
+  <% @future_bookings.each do |booking| %>
+    <section class="current-bookings">
+            <section class="bcard mx-auto">
+              <div class="bookin-card">
+                <%= cl_image_tag @future_bookings.first.fan.photo.key, class:"bookin-card-img", crop: :fill %>
+                <%# <img class="bookin-card-img" style="width:30%;" src="https://www.billboard.com/wp-content/uploads/2022/11/02-Oliver-Tree-billboard-Jimmy-Fontaine-1548.jpg?w=942&h=623&crop=1"/> %>
+                  <div class="bookin-card-infos">
+                    <h3><%= booking.fan.name %></h3>
+                    <div class="d-flex ">
+                      <div class="infobox">
+                        <p>Starts on: <%= booking.start_date  %></p>
+                        <p>Ends on: <%= booking.end_date %></p>
+                      </div>
+                      <div class="infobox">
+                        <p style="padding-left: 15px;"><%= booking.fan.nationality %></p>
+                        <p>At: <%= booking.fan.address %></p>
                       </div>
                     </div>
-              </div>
-          <% elsif (booking.end_time > Date.today) == 0 %>
-            <h2>You have no bookings coming up</h2>
-          <% else %>
-          <p></p>
-        <% end %>
+                  </div>
+            </div>
+          <% end %>
 
-        <% if booking.end_time < Date.today %>
-          <h5 class="mt-4">Previews bookings</h5>
+    <% if @past_bookings.empty? == false %>
+      <h3>Past Bookings</h3>
+    <% end %>
+
+<section class="bcard">
+    <% @past_bookings.each do |booking| %>
+
             <div class="bookin-card prev-bookin-card">
-              <img class="prev-bookin-card-img"src="https://media.cnn.com/api/v1/images/stellar/prod/160617095325-01-eurocup-irish-fans.jpg?q=x_5,y_317,h_2546,w_4524,c_crop/h_720,w_1280"/>
+              <%= cl_image_tag booking.fan.photo.key, class:"prev-bookin-card-img", crop: :fill %>
                 <div class="bookin-card-infos">
                   <h3><%= booking.fan.name %></h3>
+
                   <div class="d-flex ">
                     <div class="infobox">
                       <p>Starts on: <%= booking.start_time  %></p>
                       <p>Ends on: <%= booking.end_time %></p>
+
                     </div>
                     <div class="infobox">
                       <p style="padding-left: 15px;"><%= booking.fan.nationality %></p>
                       <p>At: <%= booking.fan.address %></p>
                     </div>
-                    <h6 class="review-tag"><%= link_to "Write review", to: "#" %></h6>
+                    <div class="hovertrash">
+                      <h6 class="review-tag"><%= link_to "Write review", to: "#" %></h6>
+                      <%# <i class="fa-solid fa-trash trash"></i> %>
+                      <i><%= link_to "", profile_path, data: { turbo_method: :delete, turbo_confirm: "U sure?!" }, class: "fa-solid fa-trash trash" %></i>
+                    </div>
                   </div>
                 </div>
             </div>
-        <% elsif (booking.end_time < Date.today) == 0 %>
-          <h2>You have no old bookings</h2>
-        <% else %>
-          <p></p>
-        <% end %>
-      </section>
-      <% end %>
-      </section>
-  </div>
+
+   <% end %>
+
+    </div>
+ </container1>
+

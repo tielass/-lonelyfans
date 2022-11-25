@@ -66,3 +66,44 @@ h2 {
   color: black;
   text-shadow: white 1px 1px 5px ;
 }
+.fan-formandbooking-index{
+  display: flex;
+}
+.fan-form{
+  width: 25%;
+}
+#wholeindexlist{
+  margin: auto;
+}
+ .trash{
+  display: none;
+  font-size: 18px;
+}
+.hovertrash:hover .trash{
+  display: block;
+  color: rgb(72, 72, 72);
+}
+@media only screen and (max-width: 1100px) {
+  .fan-formandbooking-index{
+    display: block;
+  }
+  .fan-form{
+    width: 50%;
+  }
+  #wholeindexlist{
+    margin: auto;
+  }
+  .bookin-card{
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .fan-form{
+    width: 80%;
+  }
+  #wholeindexlist{
+    width: 90%;
+  }
+}
