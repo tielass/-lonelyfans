@@ -1,4 +1,3 @@
-
 <div class="d-flex justify-content-center">
   <h1 class="my-5 text"><%= "Hello #{current_user.email.split("@")[0].capitalize}, welcome to your profile page!"  %></h1>
 </div>
@@ -31,10 +30,9 @@
 
   <container1 class="mx-5 d-block" style="w-40%" id="wholeindexlist">
 
-    <% if @future_bookings.empty? %>
+    <% if @future_bookings.empty? == true %>
       <div>
         <h2 class="mt-5 mr-5" id="nobookingsh2"><%= "You haven't made any bookings yet" %></h2><br>
-
         <p class="plus mx-auto"><%= link_to "+", fans_path  %></p>
       </div>
       </div>
@@ -55,8 +53,8 @@
                     <h3><%= booking.fan.name %></h3>
                     <div class="d-flex ">
                       <div class="infobox">
-                        <p>Starts on: <%= booking.start_date  %></p>
-                        <p>Ends on: <%= booking.end_date %></p>
+                        <p>Starts on: <%= booking.start_time  %></p>
+                        <p>Ends on: <%= booking.end_time %></p>
                       </div>
                       <div class="infobox">
                         <p style="padding-left: 15px;"><%= booking.fan.nationality %></p>
@@ -102,4 +100,3 @@
 
     </div>
  </container1>
-
