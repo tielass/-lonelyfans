@@ -6,7 +6,7 @@ class Fan < ApplicationRecord
   validates_numericality_of :price, :greater_than => 0
   validates :nationality, inclusion: { in: NATIONS }
   validates :category, inclusion: { in: CATEGORY }
-  # validates :photo, :name, :price, presence: true
+  validates :photo, :name, :price, presence: true
   # validates :description, length: { in: 8..300 }
   # validates :name, uniqueness: true
   belongs_to :user
