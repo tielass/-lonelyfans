@@ -1,7 +1,7 @@
 class Fan < ApplicationRecord
 
   NATIONS = ['Qatar', 'Ecuador', 'Senegal', 'Netherlands', 'Spain', 'Costa Rica', 'Germany', 'Japan', 'England', 'Iran', 'USA', 'Wales', 'Belgium', 'Canada', 'Morocco', 'Croatia', 'Argentina', 'Saudi Arabia', 'Mexico', 'Poland', 'Brazil', 'Serbia', 'Switzerland', 'Cameroon', 'France', 'Australia', 'Denmark', 'Tunisia', 'Portugal', 'Ghana', 'Uruguay', 'South Korea']
-  CATEGORY = ['Supportive', 'Violent', 'Loud', 'Serious', 'Calm', 'Well behaved', 'Drunk']
+  CATEGORY = ['Supportive', 'Violent', 'Loud', 'Serious', 'Calm', 'Well behaved', 'Drunk', 'Settled']
   has_one_attached :photo
 
   validates :nationality, inclusion: { in: NATIONS }
