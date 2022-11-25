@@ -2,7 +2,6 @@
   <div class="me-5 ms-3 card-img">
     <div style="width: 30rem;">
       <%= cl_image_tag @fan.photo.key, class:"card-img-top", crop: :fill %>
-      <div>
         <h5 class="card-text pb-2"><%= @fan.name.capitalize %></h5>
         <span class="badge rounded-pill bg-success"><%= @fan.category %></span>
         <p class="card-text pt-2"><%= @fan.description %></p>

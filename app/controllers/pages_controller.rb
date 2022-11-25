@@ -6,8 +6,9 @@ class PagesController < ApplicationController
     @fan = Fan.new(fan_params)
     # user_id = current_user[:id]
     @fan.user = current_user
-    @bookings = Booking.where(user: current_user)
     @today = Date.today
+    @future_bookings = Booking.where("end_date >= ?", @today).where(user: current_user).order(start_date: :asc)
+    @past_bookings = Booking.where("end_date < ?", @today).where(user: current_user).order(start_date: :asc)
   end
 
   private
