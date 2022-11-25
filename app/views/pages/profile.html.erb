@@ -7,6 +7,7 @@
     <div class="d-flex justify-content-center pb-2">
       <h4 class="pb-3">List a fan!</h4>
     </div>
+
       <%= simple_form_for(@fan) do |f| %>
 
         <div class="d-flex justify-content-between">
@@ -27,8 +28,6 @@
         </div>
       <% end %>
   </div>
-
-
 
   <container1 class="mx-5 d-block" style="w-40%" id="wholeindexlist">
 
@@ -58,6 +57,7 @@
                       <div class="infobox">
                         <p>Starts on: <%= booking.start_time  %></p>
                         <p>Ends on: <%= booking.end_time %></p>
+
                       </div>
                       <div class="infobox">
                         <p style="padding-left: 15px;"><%= booking.fan.nationality %></p>
